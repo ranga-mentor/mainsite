@@ -86,6 +86,14 @@ const OFFICIAL_TOTO_WNF: TotoFrequencyRow[] = [
 ];
 
 const RECENT_TOTO_DRAWS: TotoRecentDraw[] = [
+  { drawNo: "4180", drawDate: "2026-05-07", winning: [2, 3, 8, 16, 20, 47], additional: 10, jackpotAmount: 1_218_611 },
+  { drawNo: "4179", drawDate: "2026-05-04", winning: [7, 18, 19, 30, 36, 48], additional: 11, jackpotAmount: 12_813_283 },
+  { drawNo: "4178", drawDate: "2026-04-30", winning: [2, 6, 7, 31, 35, 39], additional: 15, jackpotAmount: 5_742_496 },
+  { drawNo: "4177", drawDate: "2026-04-27", winning: [3, 11, 13, 22, 28, 48], additional: 21, jackpotAmount: 2_942_054 },
+  { drawNo: "4176", drawDate: "2026-04-23", winning: [3, 5, 15, 23, 37, 42], additional: 48, jackpotAmount: 1_228_056 },
+  { drawNo: "4175", drawDate: "2026-04-20", winning: [3, 5, 9, 23, 43, 49], additional: 8, jackpotAmount: 2_980_914 },
+  { drawNo: "4174", drawDate: "2026-04-16", winning: [1, 3, 6, 12, 21, 41], additional: 18, jackpotAmount: 1_239_943 },
+  { drawNo: "4173", drawDate: "2026-04-13", winning: [4, 8, 10, 15, 16, 26], additional: 17, jackpotAmount: 1_267_460 },
   { drawNo: "4160", drawDate: "2026-02-27", winning: [5, 9, 20, 23, 45, 46], additional: 7, jackpotAmount: 12_000_001 },
   { drawNo: "4159", drawDate: "2026-02-23", winning: [24, 26, 30, 32, 37, 47], additional: 2, jackpotAmount: 1_787_436 },
   { drawNo: "4158", drawDate: "2026-02-19", winning: [8, 16, 17, 34, 38, 48], additional: 25, jackpotAmount: 1_474_367 },
