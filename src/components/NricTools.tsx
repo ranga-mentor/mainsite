@@ -85,7 +85,7 @@ export default function NricTools({ countryPage = "sg", onCountryPageChange }: N
       "Generator creates random 7-digit serial, computes suffix from prefix rules.",
     ],
     my: [
-      "Format: YYMMDD-PB-#### (also accepts compact 12 digits).",
+      "Format: compact 12 digits (YYMMDDPB####); hyphenated input is also accepted.",
       "YYMMDD is randomly generated date in configured range.",
       "PB is a state/place code from known MyKad code list.",
       "Last 4 digits are random serial.",
@@ -248,7 +248,7 @@ export default function NricTools({ countryPage = "sg", onCountryPageChange }: N
               className="tool-input"
               value={valueToValidateMy}
               onChange={(event) => setValueToValidateMy(event.target.value)}
-              placeholder="e.g. 900101-14-5678"
+              placeholder="e.g. 900101145678"
             />
             {valueToValidateMy.trim() ? (
               <div
@@ -268,7 +268,7 @@ export default function NricTools({ countryPage = "sg", onCountryPageChange }: N
 
           <article className="tool-card id-tool-card id-generator-card">
             <h2>Malaysia MyKad Generator</h2>
-            <p>Generates one sample MyKad style ID (YYMMDD-PB-####).</p>
+            <p>Generates one compact MyKad style ID (YYMMDDPB####).</p>
             <div className="generator-actions">
               <button
                 className="generate-button"

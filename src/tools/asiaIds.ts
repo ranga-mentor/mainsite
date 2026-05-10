@@ -67,7 +67,7 @@ export function validateMalaysiaId(rawValue: string): ValidationResult {
     return {
       valid: false,
       normalized,
-      reason: "Expected 12 digits (optionally as YYMMDD-PB-####).",
+      reason: "Expected compact 12 digits (YYMMDDPB####); hyphens are also accepted.",
     };
   }
 
@@ -106,7 +106,7 @@ export function generateMalaysiaId(gender: MyGender = "any"): string {
   }
 
   const compact = `${yymmdd}${stateCode}${firstThree}${lastDigit}`;
-  return `${compact.slice(0, 6)}-${compact.slice(6, 8)}-${compact.slice(8)}`;
+  return compact;
 }
 
 function randomLetters(length: number): string {
