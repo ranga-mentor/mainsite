@@ -29,9 +29,9 @@ export default function NricTools({ countryPage = "sg", onCountryPageChange }: N
 
   const [valueToValidate, setValueToValidate] = useState("");
   const [prefixSelection, setPrefixSelection] =
-    useState<NricPrefixSelection>("AUTO");
+    useState<NricPrefixSelection>("S");
   const [generatedSg, setGeneratedSg] = useState<string>(() =>
-    generateNric("AUTO"),
+    generateNric("S"),
   );
   const [valueToValidateMy, setValueToValidateMy] = useState("");
   const [generatedMy, setGeneratedMy] = useState<string>(() =>
