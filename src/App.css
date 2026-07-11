@@ -922,6 +922,35 @@
   line-height: 1.45;
 }
 
+.json-error-preview {
+  max-height: 18rem;
+  overflow: auto;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 0.86rem;
+}
+
+.json-error-line {
+  display: grid;
+  grid-template-columns: 3.2rem minmax(0, 1fr);
+  gap: 0.6rem;
+  padding: 0.22rem 0.65rem;
+  white-space: pre;
+}
+
+.json-error-line.is-error {
+  background: var(--danger-bg);
+  outline: 1px solid var(--danger-border);
+}
+
+.json-line-number {
+  color: var(--muted);
+  text-align: right;
+  user-select: none;
+}
+
 .result {
   border-radius: 6px;
   padding: 0.6rem 0.7rem;
