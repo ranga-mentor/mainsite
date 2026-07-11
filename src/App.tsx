@@ -7,6 +7,7 @@ import LegalSection from "./components/sections/LegalSection";
 import SiteMapSection from "./components/sections/SiteMapSection";
 import WorkbookSection from "./components/sections/WorkbookSection";
 import JavaFeaturesPage from "./components/JavaFeaturesPage";
+import JsonTools from "./components/JsonTools";
 import NricTools from "./components/NricTools";
 import SingaporeTotoPage from "./components/SingaporeTotoPage";
 import TotoPredictor from "./components/TotoPredictor";
@@ -30,6 +31,7 @@ function buildRoute(
   mode: Mode,
   numbersMode: "4d" | "toto",
   idCountryMode: "sg" | "my" | "hk",
+  toolsPage: "id" | "json",
   javaPage: "core" | "junit" | "spring-boot" | "releases",
   aiStudioPage: "visuals" | "heartfulness",
   trackIndex: number,
@@ -46,7 +48,7 @@ function buildRoute(
     return `/dev-notes?${params.toString()}`;
   }
   if (mode === "id-tools") {
-    return `/id-tools/${idCountryMode}`;
+    return toolsPage === "json" ? "/tools/json" : `/tools/id/${idCountryMode}`;
   }
   if (mode === "numbers") {
     return `/number-lab/${numbersMode}`;
@@ -76,14 +78,17 @@ function parseRoute(pathname: string, search: string): ParsedRoute {
     );
     return { mode: "workbook", trackIndex, lessonIndex };
   }
-  if (pathname === "/id-tools/hk") {
-    return { mode: "id-tools", idCountryMode: "hk" };
+  if (pathname === "/tools/json") {
+    return { mode: "id-tools", toolsPage: "json" };
   }
-  if (pathname === "/id-tools/my") {
-    return { mode: "id-tools", idCountryMode: "my" };
+  if (pathname === "/tools/id/hk" || pathname === "/id-tools/hk") {
+    return { mode: "id-tools", toolsPage: "id", idCountryMode: "hk" };
   }
-  if (pathname === "/id-tools/sg" || pathname === "/id-tools") {
-    return { mode: "id-tools", idCountryMode: "sg" };
+  if (pathname === "/tools/id/my" || pathname === "/id-tools/my") {
+    return { mode: "id-tools", toolsPage: "id", idCountryMode: "my" };
+  }
+  if (pathname === "/tools/id/sg" || pathname === "/tools/id" || pathname === "/tools" || pathname === "/id-tools/sg" || pathname === "/id-tools") {
+    return { mode: "id-tools", toolsPage: "id", idCountryMode: "sg" };
   }
   if (pathname === "/number-lab/toto") {
     return { mode: "numbers", numbersMode: "toto" };
@@ -131,11 +136,18 @@ function getSeoMeta(
   mode: Mode,
   numbersMode: "4d" | "toto",
   idCountryMode: "sg" | "my" | "hk",
+  toolsPage: "id" | "json",
   javaPage: "core" | "junit" | "spring-boot" | "releases",
   aiStudioPage: "visuals" | "heartfulness",
   activeTrackTitle: string,
   activeLessonTitle: string,
 ): Pick<SeoMeta, "title" | "description"> {
+  if (mode === "id-tools" && toolsPage === "json") {
+    return {
+      title: "Json Tools | Learning Lab",
+      description: "Validate, format, minify, and copy JSON payloads in Learning Lab.",
+    };
+  }
   if (mode === "id-tools" && idCountryMode === "sg") {
     return {
       title: "Singapore NRIC/FIN Tools | Learning Lab",
@@ -229,6 +241,7 @@ function App() {
   const [mode, setMode] = useState<Mode>("home");
   const [numbersMode, setNumbersMode] = useState<"4d" | "toto">("4d");
   const [idCountryMode, setIdCountryMode] = useState<"sg" | "my" | "hk">("sg");
+  const [toolsPage, setToolsPage] = useState<"id" | "json">("id");
   const [javaPage, setJavaPage] = useState<"core" | "junit" | "spring-boot" | "releases">("core");
   const [searchQuery, setSearchQuery] = useState("");
   const [searchOpen, setSearchOpen] = useState(false);
@@ -281,16 +294,26 @@ function App() {
       },
       {
         id: "id-tools",
-        label: "ID Tools Studio",
-        hint: "Singapore, Malaysia, Hong Kong",
+        label: "Tools",
+        hint: "ID tools and JSON tools",
         mode: "id-tools",
-        keywords: ["nric", "mykad", "hkid", "validator", "generator"],
+        toolsPage: "id",
+        keywords: ["tools", "nric", "mykad", "hkid", "json", "validator", "generator"],
+      },
+      {
+        id: "json-tools",
+        label: "Json Tools",
+        hint: "Validate, format, and minify JSON",
+        mode: "id-tools",
+        toolsPage: "json",
+        keywords: ["json", "formatter", "minifier", "validator"],
       },
       {
         id: "id-tools-sg",
         label: "Singapore NRIC/FIN",
         hint: "ID tools - Singapore",
         mode: "id-tools",
+        toolsPage: "id",
         idCountryMode: "sg",
         keywords: ["singapore", "nric", "fin"],
       },
@@ -299,6 +322,7 @@ function App() {
         label: "Malaysia MyKad",
         hint: "ID tools - Malaysia",
         mode: "id-tools",
+        toolsPage: "id",
         idCountryMode: "my",
         keywords: ["malaysia", "mykad"],
       },
@@ -307,6 +331,7 @@ function App() {
         label: "Hong Kong HKID",
         hint: "ID tools - Hong Kong",
         mode: "id-tools",
+        toolsPage: "id",
         idCountryMode: "hk",
         keywords: ["hong kong", "hkid"],
       },
@@ -491,6 +516,9 @@ function App() {
       if (parsed.idCountryMode) {
         setIdCountryMode(parsed.idCountryMode);
       }
+      if (parsed.toolsPage) {
+        setToolsPage(parsed.toolsPage);
+      }
       if (parsed.javaPage) {
         setJavaPage(parsed.javaPage);
       }
@@ -521,12 +549,12 @@ function App() {
       skipHistoryPushRef.current = false;
       return;
     }
-    const nextRoute = buildRoute(mode, numbersMode, idCountryMode, javaPage, aiStudioPage, trackIndex, lessonIndex);
+    const nextRoute = buildRoute(mode, numbersMode, idCountryMode, toolsPage, javaPage, aiStudioPage, trackIndex, lessonIndex);
     const currentRoute = `${window.location.pathname}${window.location.search}`;
     if (nextRoute !== currentRoute) {
       window.history.pushState({}, "", nextRoute);
     }
-  }, [mode, numbersMode, idCountryMode, javaPage, aiStudioPage, trackIndex, lessonIndex]);
+  }, [mode, numbersMode, idCountryMode, toolsPage, javaPage, aiStudioPage, trackIndex, lessonIndex]);
 
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", themeMode);
@@ -547,12 +575,13 @@ function App() {
   }, []);
 
   useEffect(() => {
-    const routePath = buildRoute(mode, numbersMode, idCountryMode, javaPage, aiStudioPage, trackIndex, lessonIndex);
+    const routePath = buildRoute(mode, numbersMode, idCountryMode, toolsPage, javaPage, aiStudioPage, trackIndex, lessonIndex);
     const canonical = `${SEO_BASE_URL}${routePath}`;
     const seo = getSeoMeta(
       mode,
       numbersMode,
       idCountryMode,
+      toolsPage,
       javaPage,
       aiStudioPage,
       activeTrack.title,
@@ -613,7 +642,7 @@ function App() {
         name: "Learning Lab",
       },
     });
-  }, [mode, numbersMode, idCountryMode, javaPage, aiStudioPage, trackIndex, lessonIndex, activeTrack.title, activeLesson.lesson.title]);
+  }, [mode, numbersMode, idCountryMode, toolsPage, javaPage, aiStudioPage, trackIndex, lessonIndex, activeTrack.title, activeLesson.lesson.title]);
 
   useEffect(() => {
     if (mode !== "workbook" || !activeLesson) {
@@ -649,6 +678,9 @@ function App() {
     }
     if (item.mode === "id-tools" && item.idCountryMode) {
       setIdCountryMode(item.idCountryMode);
+    }
+    if (item.mode === "id-tools" && item.toolsPage) {
+      setToolsPage(item.toolsPage);
     }
     if (item.mode === "java" && item.javaPage) {
       setJavaPage(item.javaPage);
@@ -805,7 +837,7 @@ function App() {
               <span className="ai-icon" aria-hidden="true">🤖</span> AI
             </button>
             <button className={mode === "id-tools" ? "is-active" : ""} onClick={() => setMode("id-tools")} type="button">
-              ID Tools
+              Tools
             </button>
             <button className={mode === "numbers" ? "is-active" : ""} onClick={() => setMode("numbers")} type="button">
               <span className="sg-icon" aria-hidden="true">🇸🇬</span> Singapore Lottery
@@ -896,9 +928,26 @@ function App() {
         {mode === "id-tools" && (
           <section className="workspace-shell">
             <div className="workspace-head">
-              <h2>ID Tools</h2>
+              <h2>Tools</h2>
             </div>
-            <NricTools countryPage={idCountryMode} onCountryPageChange={setIdCountryMode} />
+            <section className="country-switcher" aria-label="Tool categories">
+              <button
+                className={toolsPage === "id" ? "is-active" : ""}
+                onClick={() => setToolsPage("id")}
+                type="button"
+              >
+                ID Tools
+              </button>
+              <button
+                className={toolsPage === "json" ? "is-active" : ""}
+                onClick={() => setToolsPage("json")}
+                type="button"
+              >
+                Json Tools
+              </button>
+            </section>
+            {toolsPage === "id" && <NricTools countryPage={idCountryMode} onCountryPageChange={setIdCountryMode} />}
+            {toolsPage === "json" && <JsonTools />}
           </section>
         )}
 

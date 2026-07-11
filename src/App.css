@@ -915,6 +915,13 @@
   color: var(--text);
 }
 
+.json-input {
+  min-height: 18rem;
+  resize: vertical;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  line-height: 1.45;
+}
+
 .result {
   border-radius: 6px;
   padding: 0.6rem 0.7rem;
@@ -954,6 +961,8 @@
 .generator-actions {
   display: flex;
   justify-content: flex-end;
+  gap: 0.5rem;
+  flex-wrap: wrap;
   margin-bottom: 0.35rem;
 }
 

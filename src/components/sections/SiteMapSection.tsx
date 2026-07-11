@@ -9,9 +9,10 @@ export default function SiteMapSection() {
         <ul className="source-list">
           <li><a href="/">Learning Lab Home</a></li>
           <li><a href="/dev-notes">Dev Notes</a></li>
-          <li><a href="/id-tools/sg">ID Tools - Singapore NRIC/FIN</a></li>
-          <li><a href="/id-tools/my">ID Tools - Malaysia MyKad</a></li>
-          <li><a href="/id-tools/hk">ID Tools - Hong Kong HKID</a></li>
+          <li><a href="/tools/id/sg">ID Tools - Singapore NRIC/FIN</a></li>
+          <li><a href="/tools/id/my">ID Tools - Malaysia MyKad</a></li>
+          <li><a href="/tools/id/hk">ID Tools - Hong Kong HKID</a></li>
+          <li><a href="/tools/json">Json Tools</a></li>
           <li><a href="/number-lab/4d">Singapore Lottery - 4D Predictor</a></li>
           <li><a href="/number-lab/toto">Singapore Lottery - Toto Predictor</a></li>
           <li><a href="/java/core">Java Learning - Core Java</a></li>

@@ -11,17 +11,22 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://pandutadaka.com/id-tools/sg</loc>
+    <loc>https://pandutadaka.com/tools/id/sg</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://pandutadaka.com/id-tools/my</loc>
+    <loc>https://pandutadaka.com/tools/id/my</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://pandutadaka.com/id-tools/hk</loc>
+    <loc>https://pandutadaka.com/tools/id/hk</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://pandutadaka.com/tools/json</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>

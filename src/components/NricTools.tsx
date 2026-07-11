@@ -119,7 +119,7 @@ export default function NricTools({ countryPage = "sg", onCountryPageChange }: N
   return (
     <>
       <section className="id-tools-hero">
-        <h2>ID Tools Studio</h2>
+        <h2>ID Tools</h2>
         <p>Pick a country to validate or generate identity format examples.</p>
       </section>
 

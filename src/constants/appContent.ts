@@ -9,9 +9,9 @@ export const featureCards: FeatureCard[] = [
     image: "/workbook-tracks.jpg",
   },
   {
-    title: "ID Tools Studio",
-    description: "Validate and generate Singapore, Malaysia, and Hong Kong IDs in one place.",
-    action: "Open ID Tools",
+    title: "Tools",
+    description: "Validate IDs and work with JSON payloads in one place.",
+    action: "Open Tools",
     mode: "id-tools",
     image: "/id-tools-neon-theme.svg",
   },
@@ -68,9 +68,9 @@ export const aiPosterSlides: AiPosterSlide[] = [
 
 export const seoByMode: Record<Mode, SeoMeta> = {
   home: {
-    title: "Learning Lab | AI, Java, ID Tools, and Singapore Lottery",
+    title: "Learning Lab | AI, Java, Tools, and Singapore Lottery",
     description:
-      "Learning Lab with AI Studio, Java feature explorer, ID tools, and Singapore number lab for 4D and Toto learning workflows.",
+      "Learning Lab with AI Studio, Java feature explorer, practical tools, and Singapore number lab for 4D and Toto learning workflows.",
     path: "/",
   },
   workbook: {
@@ -79,10 +79,10 @@ export const seoByMode: Record<Mode, SeoMeta> = {
     path: "/dev-notes",
   },
   "id-tools": {
-    title: "ID Tools Studio | Learning Lab",
+    title: "Tools | Learning Lab",
     description:
-      "Validate and generate Singapore NRIC/FIN, Malaysia MyKad, and Hong Kong HKID formats.",
-    path: "/id-tools",
+      "Use ID tools and JSON tools for practical validation, formatting, and generation workflows.",
+    path: "/tools/id/sg",
   },
   numbers: {
     title: "Singapore Lottery | Learning Lab",
