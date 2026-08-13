@@ -32,7 +32,7 @@ export type SearchResult = {
   mode: Mode;
   numbersMode?: "4d" | "toto";
   idCountryMode?: "sg" | "my" | "hk";
-  toolsPage?: "id" | "json";
+  toolsPage?: "id" | "json" | "sql";
   javaPage?: "core" | "junit" | "spring-boot" | "releases";
   trackIndex?: number;
   lessonIndex?: number;
@@ -49,7 +49,7 @@ export type ParsedRoute = {
   mode: Mode;
   numbersMode?: "4d" | "toto";
   idCountryMode?: "sg" | "my" | "hk";
-  toolsPage?: "id" | "json";
+  toolsPage?: "id" | "json" | "sql";
   javaPage?: "core" | "junit" | "spring-boot" | "releases";
   aiStudioPage?: "visuals" | "heartfulness";
   trackIndex?: number;

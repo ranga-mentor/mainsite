@@ -10,7 +10,7 @@ export const featureCards: FeatureCard[] = [
   },
   {
     title: "Tools",
-    description: "Validate IDs and work with JSON payloads in one place.",
+    description: "Validate IDs, work with JSON payloads, and check SQL syntax in one place.",
     action: "Open Tools",
     mode: "id-tools",
     image: "/id-tools-neon-theme.svg",
@@ -81,7 +81,7 @@ export const seoByMode: Record<Mode, SeoMeta> = {
   "id-tools": {
     title: "Tools | Learning Lab",
     description:
-      "Use ID tools and JSON tools for practical validation, formatting, and generation workflows.",
+      "Use ID, JSON, and SQL tools for practical validation, formatting, generation, and syntax-check workflows.",
     path: "/tools/id/sg",
   },
   numbers: {

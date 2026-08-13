@@ -10,6 +10,7 @@ import JavaFeaturesPage from "./components/JavaFeaturesPage";
 import JsonTools from "./components/JsonTools";
 import NricTools from "./components/NricTools";
 import SingaporeTotoPage from "./components/SingaporeTotoPage";
+import SqlTools from "./components/SqlTools";
 import TotoPredictor from "./components/TotoPredictor";
 import { aiPosterSlides, featureCards, seoByMode } from "./constants/appContent";
 import { learningTracks } from "./data/learningContent";
@@ -31,7 +32,7 @@ function buildRoute(
   mode: Mode,
   numbersMode: "4d" | "toto",
   idCountryMode: "sg" | "my" | "hk",
-  toolsPage: "id" | "json",
+  toolsPage: "id" | "json" | "sql",
   javaPage: "core" | "junit" | "spring-boot" | "releases",
   aiStudioPage: "visuals" | "heartfulness",
   trackIndex: number,
@@ -48,7 +49,13 @@ function buildRoute(
     return `/dev-notes?${params.toString()}`;
   }
   if (mode === "id-tools") {
-    return toolsPage === "json" ? "/tools/json" : `/tools/id/${idCountryMode}`;
+    if (toolsPage === "json") {
+      return "/tools/json";
+    }
+    if (toolsPage === "sql") {
+      return "/tools/sql";
+    }
+    return `/tools/id/${idCountryMode}`;
   }
   if (mode === "numbers") {
     return `/number-lab/${numbersMode}`;
@@ -80,6 +87,9 @@ function parseRoute(pathname: string, search: string): ParsedRoute {
   }
   if (pathname === "/tools/json") {
     return { mode: "id-tools", toolsPage: "json" };
+  }
+  if (pathname === "/tools/sql") {
+    return { mode: "id-tools", toolsPage: "sql" };
   }
   if (pathname === "/tools/id/hk" || pathname === "/id-tools/hk") {
     return { mode: "id-tools", toolsPage: "id", idCountryMode: "hk" };
@@ -136,7 +146,7 @@ function getSeoMeta(
   mode: Mode,
   numbersMode: "4d" | "toto",
   idCountryMode: "sg" | "my" | "hk",
-  toolsPage: "id" | "json",
+  toolsPage: "id" | "json" | "sql",
   javaPage: "core" | "junit" | "spring-boot" | "releases",
   aiStudioPage: "visuals" | "heartfulness",
   activeTrackTitle: string,
@@ -146,6 +156,12 @@ function getSeoMeta(
     return {
       title: "Json Tools | Learning Lab",
       description: "Validate, format, minify, and copy JSON payloads in Learning Lab.",
+    };
+  }
+  if (mode === "id-tools" && toolsPage === "sql") {
+    return {
+      title: "SQL Syntax Checker | Learning Lab",
+      description: "Check common PostgreSQL and MSSQL syntax issues with line and column feedback.",
     };
   }
   if (mode === "id-tools" && idCountryMode === "sg") {
@@ -241,7 +257,7 @@ function App() {
   const [mode, setMode] = useState<Mode>("home");
   const [numbersMode, setNumbersMode] = useState<"4d" | "toto">("4d");
   const [idCountryMode, setIdCountryMode] = useState<"sg" | "my" | "hk">("sg");
-  const [toolsPage, setToolsPage] = useState<"id" | "json">("id");
+  const [toolsPage, setToolsPage] = useState<"id" | "json" | "sql">("id");
   const [javaPage, setJavaPage] = useState<"core" | "junit" | "spring-boot" | "releases">("core");
   const [searchQuery, setSearchQuery] = useState("");
   const [searchOpen, setSearchOpen] = useState(false);
@@ -307,6 +323,14 @@ function App() {
         mode: "id-tools",
         toolsPage: "json",
         keywords: ["json", "formatter", "minifier", "validator"],
+      },
+      {
+        id: "sql-tools",
+        label: "SQL Syntax Checker",
+        hint: "PostgreSQL and MSSQL syntax checks",
+        mode: "id-tools",
+        toolsPage: "sql",
+        keywords: ["sql", "postgres", "postgresql", "mssql", "syntax", "checker"],
       },
       {
         id: "id-tools-sg",
@@ -945,9 +969,17 @@ function App() {
               >
                 Json Tools
               </button>
+              <button
+                className={toolsPage === "sql" ? "is-active" : ""}
+                onClick={() => setToolsPage("sql")}
+                type="button"
+              >
+                SQL Tools
+              </button>
             </section>
             {toolsPage === "id" && <NricTools countryPage={idCountryMode} onCountryPageChange={setIdCountryMode} />}
             {toolsPage === "json" && <JsonTools />}
+            {toolsPage === "sql" && <SqlTools />}
           </section>
         )}
 

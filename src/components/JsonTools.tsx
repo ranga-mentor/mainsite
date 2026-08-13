@@ -137,7 +137,7 @@ export default function JsonTools() {
           }}
           spellCheck={false}
         />
-        <div className="generator-actions">
+        <div className="generator-actions json-actions">
           <button
             className="generate-button"
             type="button"
@@ -175,7 +175,7 @@ export default function JsonTools() {
           >
             Unescape
           </button>
-                    <button className="generate-button" type="button" onClick={copyJson}>
+          <button className="generate-button json-copy-button" type="button" onClick={copyJson}>
             {copyState === "copied" ? "Copied" : "Copy"}
           </button>
         </div>

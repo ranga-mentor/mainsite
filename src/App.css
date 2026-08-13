@@ -977,7 +977,7 @@
 
 .generator-controls {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) auto;
   gap: 0.5rem 0.65rem;
   align-items: end;
   margin-bottom: 0.35rem;
@@ -993,6 +993,14 @@
   gap: 0.5rem;
   flex-wrap: wrap;
   margin-bottom: 0.35rem;
+}
+
+.json-actions {
+  justify-content: flex-start;
+}
+
+.json-copy-button {
+  margin-left: auto;
 }
 
 .generator-select-grid {
@@ -1078,6 +1086,7 @@
   font-weight: 800;
   color: var(--text);
   letter-spacing: 0.02em;
+  overflow-wrap: anywhere;
 }
 
 .copy-state {

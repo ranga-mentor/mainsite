@@ -13,6 +13,7 @@ export default function SiteMapSection() {
           <li><a href="/tools/id/my">ID Tools - Malaysia MyKad</a></li>
           <li><a href="/tools/id/hk">ID Tools - Hong Kong HKID</a></li>
           <li><a href="/tools/json">Json Tools</a></li>
+          <li><a href="/tools/sql">SQL Syntax Checker</a></li>
           <li><a href="/number-lab/4d">Singapore Lottery - 4D Predictor</a></li>
           <li><a href="/number-lab/toto">Singapore Lottery - Toto Predictor</a></li>
           <li><a href="/java/core">Java Learning - Core Java</a></li>
